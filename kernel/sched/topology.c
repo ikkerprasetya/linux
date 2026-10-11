@@ -2360,7 +2360,7 @@ void sched_init_numa(int offline_node)
 
 	sched_domains_numa_levels = 0;
 
-	masks = kzalloc(sizeof(void *) * nr_levels, GFP_KERNEL);
+	masks = kcalloc(nr_levels, sizeof(void *), GFP_KERNEL);
 	if (!masks)
 		return;
 
@@ -2369,7 +2369,7 @@ void sched_init_numa(int offline_node)
 	 * CPUs of nodes that are that many hops away from us.
 	 */
 	for (i = 0; i < nr_levels; i++) {
-		masks[i] = kzalloc(nr_node_ids * sizeof(void *), GFP_KERNEL);
+		masks[i] = kcalloc(nr_node_ids, sizeof(void *), GFP_KERNEL);
 		if (!masks[i])
 			return;
 

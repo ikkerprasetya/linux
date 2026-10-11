@@ -291,9 +291,9 @@ static int module_add_modinfo_attrs(struct module *mod)
 	int error = 0;
 	int i;
 
-	mod->modinfo_attrs = kzalloc((sizeof(struct module_attribute) *
-					(modinfo_attrs_count + 1)),
-					GFP_KERNEL);
+	mod->modinfo_attrs = kcalloc(modinfo_attrs_count + 1,
+				     sizeof(struct module_attribute),
+				     GFP_KERNEL);
 	if (!mod->modinfo_attrs)
 		return -ENOMEM;
 
